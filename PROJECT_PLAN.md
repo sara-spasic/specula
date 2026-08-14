@@ -71,12 +71,12 @@ Future:
 - Basic risk assessment
 - Web dashboard
 - REST API
+- Continuous feed monitoring
+- Reputation change detection
 
 ### Future Features
 
-- Continuous feed monitoring
 - Automated alerts
-- Reputation change detection
 - Background processing
 - STIX 2.1 support
 - TAXII integration
@@ -171,3 +171,14 @@ information provided by external threat intelligence sources.
 - User authentication
 - Role-based access control
 - Cloud deployment
+
+## Data Model Strategy
+
+Specula stores threat intelligence on two levels:
+
+1. **Normalized IOC records** – common attributes shared across all threat intelligence sources.
+2. **Source observations** – source-specific metadata and raw intelligence data returned by individual providers.
+
+This architecture allows correlation, historical tracking, risk score recalculation, and integration of additional threat intelligence sources without modifying the core IOC model.
+
+
