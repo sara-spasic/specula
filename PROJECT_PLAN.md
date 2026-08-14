@@ -181,4 +181,13 @@ Specula stores threat intelligence on two levels:
 
 This architecture allows correlation, historical tracking, risk score recalculation, and integration of additional threat intelligence sources without modifying the core IOC model.
 
+## 11. Target Users
+
+### Security Analyst
+
+The primary user of Specula. Security analysts use the platform to search, investigate, and monitor Indicators of Compromise collected from multiple threat intelligence sources.
+
+### Security Tools
+
+External security systems (SIEM, SOAR, firewalls, or internal security tools) can query Specula through the REST API to retrieve reputation and contextual information about known IoCs.
 
