@@ -14,6 +14,8 @@ The platform provides a centralized view of threat intelligence data
 and allows security analysts to investigate IoCs through a web interface
 and REST API.
 
+Specula combines normalized IOC information with source-specific intelligence,
+allowing information from different providers to be correlated while preserving the original data returned by each source.
 ---
 
 ## 2. Problem Statement
@@ -37,7 +39,12 @@ of IoCs collected from multiple threat intelligence sources.
 - Provide a unified risk/reputation overview
 - Store historical threat intelligence data
 - Provide a web interface for security analysts
-- Expose threat intelligence through a REST API
+- Expose threat intelligence through a REST API 
+- Preserve source-specific threat intelligence
+- Store raw provider responses for further investigation
+- Calculate an aggregated risk assessment based on available intelligence
+- Support investigation of file-related behavioural intelligence
+- Design the system so that additional intelligence sources can be integrated later
 
 ---
 
@@ -49,13 +56,16 @@ Initial IoC types:
 - IPv6 addresses
 - Domains
 - URLs
-- File hashes
+- Files/ File hashes
 
-Future:
+File intelligence may include multiple hash representations such as:
 
-- SSL/TLS certificates
-- Other STIX objects
-
+- MD5
+- SHA-1
+- SHA-256
+- TLSH
+- VHASH
+- Permhash
 ---
 
 ## 5. Core Features
@@ -66,13 +76,16 @@ Future:
 - Threat feed ingestion
 - Data normalization
 - IoC deduplication
-- Source correlation
-- IoC storage
+- Source-specific intelligence storage
+- Raw JSON response preservation
 - Basic risk assessment
-- Web dashboard
+- Multi-source correlation
+- Aggregated risk assessment
+- Historical observation storage
+- File intelligence lookup
+- File behaviour analysis
 - REST API
-- Continuous feed monitoring
-- Reputation change detection
+- Basic web dashboard
 
 ### Future Features
 
@@ -95,6 +108,58 @@ Initial sources:
 
 The platform should be designed so that additional sources
 can be integrated later.
+
+### VirusTotal
+
+VirusTotal provides intelligence for multiple IOC types, including IP addresses, domains, URLs, and files.
+
+Depending on the IOC type, VirusTotal may provide:
+
+* Reputation and analysis statistics
+* Security engine detections
+* Tags
+* Network and DNS information
+* WHOIS information
+* File metadata
+* Sandbox verdicts
+* Malware-related information
+* File behaviour
+* MITRE ATT&CK techniques
+
+### AbuseIPDB
+
+AbuseIPDB focuses primarily on IP address reputation and abuse reporting.
+
+Relevant information may include:
+
+* IP address
+* IP version
+* Abuse confidence score
+* Country
+* ISP
+* Domain
+* Usage type
+* Hostnames
+* Tor status
+* Number of reports
+* Reporter information
+* Last reported time
+* Abuse categories
+
+### AlienVault OTX
+
+AlienVault OTX organizes threat intelligence through Pulses and Indicators.
+
+OTX may provide:
+
+* Indicator information
+* Pulse information
+* Threat context
+* Tags
+* Malware families
+* Adversary information
+* MITRE ATT&CK references
+* References and other source-specific metadata
 
 ---
 
@@ -152,12 +217,13 @@ Dashboard / REST API
 
 ## 9. Project Scope
 
-The initial version will focus on collecting and correlating
-threat intelligence data from multiple external sources.
+The initial version of Specula focuses on collecting, storing, normalizing, and correlating threat intelligence from multiple external providers.
 
-The platform will not independently discover malicious activity.
-Instead, it will aggregate, normalize, correlate, and monitor
-information provided by external threat intelligence sources.
+Specula does not independently discover malicious activity and does not replace dedicated security products such as antivirus, EDR, SIEM, or malware analysis platforms.
+
+Instead, it aggregates intelligence provided by external sources and presents it in a centralized form for security investigation.
+
+The aggregated risk assessment is intended as an analytical aid and should not be interpreted as a definitive verdict without further investigation.
 
 ---
 
@@ -181,7 +247,7 @@ Specula stores threat intelligence on two levels:
 
 This architecture allows correlation, historical tracking, risk score recalculation, and integration of additional threat intelligence sources without modifying the core IOC model.
 
-## 11. Target Users
+## Target Users
 
 ### Security Analyst
 
