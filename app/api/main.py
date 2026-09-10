@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 from app.database import engine
+from app.api.models import Base
 
 
 app=FastAPI()
+
+Base.metadata.create.all(engine)
 
 @app.get("/")
 def root():
