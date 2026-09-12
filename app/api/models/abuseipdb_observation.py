@@ -1,3 +1,7 @@
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.api.models.abuse_report import AbuseReport
 from app.api.models.source_observation import SourceObservation
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped,mapped_column,relationship
@@ -15,3 +19,15 @@ class AbuseIPDBObservation(SourceObservation):
     num_distinct_users: Mapped[int]=mapped_column()
     last_reported_at: Mapped[datetime]=mapped_column()
     
+    
+    is_whitelisted: Mapped[bool] = mapped_column()
+    country_code: Mapped[str] = mapped_column()
+    country_name: Mapped[str] = mapped_column()
+    usage_type: Mapped[str] = mapped_column()
+    isp: Mapped[str] = mapped_column()
+    domain: Mapped[str] = mapped_column()
+    is_tor: Mapped[bool] = mapped_column()
+
+    reports:Mapped[list["AbuseReport"]]=relationship(
+        back_populates="observation"
+    )
