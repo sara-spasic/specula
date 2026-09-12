@@ -1,8 +1,11 @@
+from typing import TYPE_CHECKING
 
+if TYPE_CHECKING:
+    from app.api.models.source_observation import SourceObservation
 import enum
 from datetime import datetime
 from sqlalchemy import Integer,String,Enum,UniqueConstraint
-from sqlalchemy.orm import Mapped,mapped_column
+from sqlalchemy.orm import Mapped,mapped_column,relationship
 
 
 
@@ -27,3 +30,7 @@ class IOC(Base):
     type : Mapped[IOCType]=mapped_column(Enum(IOCType),nullable=False)
     first_seen : Mapped[datetime]=mapped_column()
     last_seen :Mapped[datetime]=mapped_column()
+
+    source_observations:Mapped[list["SourceObservation"]]=relationship(
+        back_populates="ioc"
+    )
