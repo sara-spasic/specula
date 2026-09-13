@@ -7,6 +7,8 @@ from app.api.models.virus_total_analysis_res import VirusTotalAnalysisResult
 from app.api.models.abuseipdb_observation import AbuseIPDBObservation
 from app.api.models.abuse_report import AbuseReport
 from app.api.models.abuse_report_category import AbuseReportCategory
+from app.api.models.otx_observation import OTXObservation
+from app.api.models.otx_pulse import OTXPulse
 
 
 

@@ -8,7 +8,7 @@ from sqlalchemy.orm import Mapped,mapped_column,relationship
 from app.api.models.base import Base
 from datetime import datetime
 class OTXPulse(Base):
-    ___tablename___="otx_pulses"
+    __tablename__="otx_pulses"
 
     pulse_id:Mapped[int]=mapped_column(primary_key=True)
     name:Mapped[str]=mapped_column(String)
@@ -20,7 +20,7 @@ class OTXPulse(Base):
     modified: Mapped[datetime]=mapped_column()
     adversary: Mapped[str]=mapped_column(String)
 
-    observation_id:Mapped[int]=mapped_column(
+    otx_observation_id:Mapped[int]=mapped_column(
         ForeignKey("otx_observations.observation_id")
     )
     observation: Mapped[["OTXObservation"]]=relationship(
