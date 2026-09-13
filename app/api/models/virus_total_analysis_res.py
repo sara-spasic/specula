@@ -18,10 +18,10 @@ class VirusTotalAnalysisResult(Base):
         back_populates="analysis_results"
     )
     engine_name: Mapped[str]=mapped_column(String)
-    engine_version: Mapped[str]=mapped_column(String)
+    engine_version: Mapped[str|None]=mapped_column(String)
     category:Mapped[str]=mapped_column(String)
-    method:Mapped[str]=mapped_column(String)
-    result: Mapped[str]=mapped_column(String)
+    method:Mapped[str|None]=mapped_column(String)
+    result: Mapped[str|None]=mapped_column(String)
 
 
 

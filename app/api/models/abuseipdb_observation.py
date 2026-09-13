@@ -17,16 +17,16 @@ class AbuseIPDBObservation(SourceObservation):
     abuse_confidence_score: Mapped[int]=mapped_column()
     total_reports: Mapped[int]=mapped_column()
     num_distinct_users: Mapped[int]=mapped_column()
-    last_reported_at: Mapped[datetime]=mapped_column()
+    last_reported_at: Mapped[datetime|None]=mapped_column()
     
     
-    is_whitelisted: Mapped[bool] = mapped_column()
-    country_code: Mapped[str] = mapped_column()
-    country_name: Mapped[str] = mapped_column()
-    usage_type: Mapped[str] = mapped_column()
-    isp: Mapped[str] = mapped_column()
-    domain: Mapped[str] = mapped_column()
-    is_tor: Mapped[bool] = mapped_column()
+    is_whitelisted: Mapped[bool|None] = mapped_column()
+    country_code: Mapped[str|None] = mapped_column()
+    country_name: Mapped[str|None] = mapped_column()
+    usage_type: Mapped[str|None] = mapped_column()
+    isp: Mapped[str|None] = mapped_column()
+    domain: Mapped[str|None] = mapped_column()
+    is_tor: Mapped[bool|None] = mapped_column()
 
     reports:Mapped[list["AbuseReport"]]=relationship(
         back_populates="observation"

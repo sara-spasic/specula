@@ -13,10 +13,10 @@ class VirusTotalObservation(SourceObservation):
         ForeignKey("source_observations.observation_id"),
         primary_key=True
     )
-    first_submission_date: Mapped[datetime] = mapped_column()
-    last_submission_date: Mapped[datetime]=mapped_column()
-    last_analysis_date:Mapped[datetime]=mapped_column()
-    last_modification_date:Mapped[datetime]=mapped_column()
+    first_submission_date: Mapped[datetime|None] = mapped_column()
+    last_submission_date: Mapped[datetime|None]=mapped_column()
+    last_analysis_date:Mapped[datetime|None]=mapped_column()
+    last_modification_date:Mapped[datetime|None]=mapped_column()
     times_submitted: Mapped[int]=mapped_column()
     reputation:Mapped[int]=mapped_column()
     malicious_count:Mapped[int]=mapped_column()

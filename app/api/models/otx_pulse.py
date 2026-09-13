@@ -12,13 +12,13 @@ class OTXPulse(Base):
 
     pulse_id:Mapped[int]=mapped_column(primary_key=True)
     name:Mapped[str]=mapped_column(String)
-    description:Mapped[str]=mapped_column(Text)
+    description:Mapped[str|None]=mapped_column(Text)
     author_name: Mapped[str]=mapped_column(String)
-    tlp:Mapped[str]=mapped_column(String)
+    tlp:Mapped[str|None]=mapped_column(String)
     public: Mapped[bool]=mapped_column(Boolean)
     created: Mapped[datetime]=mapped_column()
     modified: Mapped[datetime]=mapped_column()
-    adversary: Mapped[str]=mapped_column(String)
+    adversary: Mapped[str|None]=mapped_column(String)
 
     otx_observation_id:Mapped[int]=mapped_column(
         ForeignKey("otx_observations.observation_id")

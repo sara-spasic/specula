@@ -14,10 +14,10 @@ class AbuseReport(Base):
 
     report_id: Mapped[int]=mapped_column(primary_key=True)
     reported_at:Mapped[datetime]=mapped_column()
-    comment: Mapped[str]=mapped_column(Text)
+    comment: Mapped[str|None]=mapped_column(Text)
     reporter_id: Mapped[int]=mapped_column()
-    reporter_country_code:Mapped[str]=mapped_column(String)
-    reporter_country_name:Mapped[str]=mapped_column(String)
+    reporter_country_code:Mapped[str|None]=mapped_column(String)
+    reporter_country_name:Mapped[str|None]=mapped_column(String)
 
     abuseipdb_observation_id: Mapped[int]=mapped_column(
         ForeignKey("abuseipdb_observations.observation_id")
