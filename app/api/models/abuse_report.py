@@ -2,7 +2,6 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from app.api.models.abuseipdb_observation import AbuseIPDBObservation
-from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from app.api.models.abuse_report_category import AbuseReportCategory

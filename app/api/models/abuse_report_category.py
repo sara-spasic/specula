@@ -1,7 +1,7 @@
-if TYPE_CHECKING:
-    from app.api.models.abuse_report import AbuseReport
 from typing import TYPE_CHECKING
 
+if TYPE_CHECKING:
+    from app.api.models.abuse_report import AbuseReport
 
 from app.api.models.base import Base
 from sqlalchemy.orm import Mapped,mapped_column,relationship
