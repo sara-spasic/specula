@@ -10,3 +10,4 @@ class File(IOC):
             primary_key=True
         )
 
+    hash_algorithm: Mapped[str] = mapped_column(String)

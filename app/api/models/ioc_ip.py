@@ -10,3 +10,4 @@ class IP(IOC):
             primary_key=True
         )
 
+    ip_version: Mapped[int] = mapped_column()
