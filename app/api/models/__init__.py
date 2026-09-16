@@ -9,7 +9,7 @@ from app.api.models.abuse_report import AbuseReport
 from app.api.models.abuse_report_category import AbuseReportCategory
 from app.api.models.otx_observation import OTXObservation
 from app.api.models.otx_pulse import OTXPulse
-
+from app.api.models.risk_assessment import RiskAssessment
 
 
 
