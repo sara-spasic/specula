@@ -2,6 +2,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from app.api.models.source_observation import SourceObservation
+    from app.api.models.risk_assessment import RiskAssessment
 import enum
 from datetime import datetime
 from sqlalchemy import Integer,String,Enum,UniqueConstraint
@@ -32,5 +33,9 @@ class IOC(Base):
     last_seen :Mapped[datetime]=mapped_column()
 
     source_observations:Mapped[list["SourceObservation"]]=relationship(
+        back_populates="ioc"
+    )
+
+    risk_assessments: Mapped[list["RiskAssessment"]]=relationship(
         back_populates="ioc"
     )
