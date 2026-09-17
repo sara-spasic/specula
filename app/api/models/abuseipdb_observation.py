@@ -2,14 +2,16 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from app.api.models.abuse_report import AbuseReport
-from app.api.models.source_observation import SourceObservation
+from app.api.models.source_observation import SourceObservation,SourceType
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped,mapped_column,relationship
 from datetime import datetime
 
 class AbuseIPDBObservation(SourceObservation):
     __tablename__="abuseipdb_observations"
-
+    __mapper_args__ = {
+    "polymorphic_identity": SourceType.ABUSEIPDB
+    }
     observation_id: Mapped[int] = mapped_column(
             ForeignKey("source_observations.observation_id"),
             primary_key=True

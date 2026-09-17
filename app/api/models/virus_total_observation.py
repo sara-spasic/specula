@@ -2,17 +2,22 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from app.api.models.virus_total_analysis_res import VirusTotalAnalysisResult
-from app.api.models.source_observation import SourceObservation
+from app.api.models.source_observation import SourceObservation,SourceType
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped,mapped_column,relationship
 from datetime import datetime
 
 class VirusTotalObservation(SourceObservation):
     __tablename__ = "virus_total_observations"
+    __mapper_args__ = {
+    "polymorphic_identity": SourceType.VIRUSTOTAL
+    }
+
     observation_id: Mapped[int] = mapped_column(
         ForeignKey("source_observations.observation_id"),
         primary_key=True
     )
+
     first_submission_date: Mapped[datetime|None] = mapped_column()
     last_submission_date: Mapped[datetime|None]=mapped_column()
     last_analysis_date:Mapped[datetime|None]=mapped_column()
