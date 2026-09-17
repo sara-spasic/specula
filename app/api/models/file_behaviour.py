@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from app.api.models.process_activity import ProcessActivity
     from app.api.models.file_activity import FileActivity
     from app.api.models.service_activity import ServiceActivity
-    
+
 from sqlalchemy import Boolean,String,Text,ForeignKey
 from sqlalchemy.orm import Mapped,mapped_column,relationship
 from  app.api.models.base import Base
@@ -29,7 +29,8 @@ class FileBehaviour(Base):
     hosts_file: Mapped[Text|None]=mapped_column(Text)
 
     file_id: Mapped[int]=mapped_column(
-        ForeignKey=("files.file_id")
+        ForeignKey=("files.ioc_id"),
+        nullable=False
     )
 
     file: Mapped["File"]=relationship(
