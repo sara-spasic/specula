@@ -37,6 +37,11 @@ class IOC(Base):
     first_seen : Mapped[datetime]=mapped_column()
     last_seen :Mapped[datetime]=mapped_column()
 
+    kind: Mapped[IOCKind] = mapped_column(Enum(IOCKind),nullable=False)
+    __mapper_args__ = {
+    "polymorphic_on": kind
+    }
+
     source_observations:Mapped[list["SourceObservation"]]=relationship(
         back_populates="ioc"
     )
