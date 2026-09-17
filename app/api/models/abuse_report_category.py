@@ -20,3 +20,6 @@ class AbuseReportCategory(Base):
     report: Mapped["AbuseReport"]=relationship(
         back_populates="report_categories"
     )
+
+
+    
