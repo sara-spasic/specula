@@ -18,7 +18,12 @@ class IOCType(enum.Enum):
     DOMAIN= "domain"
     URL= "url"
     FILE_HASH= "file_hash"
-
+    
+class IOCKind(enum.Enum):
+    IP = "ip"
+    DOMAIN = "domain"
+    URL = "url"
+    FILE = "file"
 
 class IOC(Base):
     __tablename__ = "iocs"

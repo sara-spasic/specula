@@ -13,7 +13,7 @@ class File(IOC):
             primary_key=True
         )
 
-    hash_algorithm: Mapped[str] = mapped_column(String)
+    hash_algorithm: Mapped[str|None] = mapped_column(String)
 
     file_behaviours: Mapped[list["FileBehaviour"]]=relationship(
         back_populates="file"
