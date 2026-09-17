@@ -12,4 +12,17 @@ from app.api.models.otx_pulse import OTXPulse
 from app.api.models.risk_assessment import RiskAssessment
 
 
+from app.api.models.ioc import IOC
+from app.api.models.ioc_ip import IP
+from app.api.models.ioc_domain import Domain
+from app.api.models.ioc_url import URL
+from app.api.models.ioc_file import File
 
+
+from app.api.models.file_behaviour import FileBehaviour
+from app.api.models.process_activity import ProcessActivity
+from app.api.models.file_activity import FileActivity
+from app.api.models.service_activity import ServiceActivity
+from app.api.models.signature_match import SignatureMatch
+from app.api.models.sigma_analysis import SigmaAnalysis
+from app.api.models.mitre_technique import MITREtechnique

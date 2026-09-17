@@ -29,8 +29,7 @@ class FileBehaviour(Base):
     hosts_file: Mapped[Text|None]=mapped_column(Text)
 
     file_id: Mapped[int]=mapped_column(
-        ForeignKey=("files.ioc_id"),
-        nullable=False
+        ForeignKey("files.ioc_id")
     )
 
     file: Mapped["File"]=relationship(
