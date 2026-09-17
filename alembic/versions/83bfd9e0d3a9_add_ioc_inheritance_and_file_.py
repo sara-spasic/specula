@@ -1,18 +1,18 @@
-"""add polymorphic mappings
+"""add IOC inheritance and file intelligence
 
-Revision ID: cfafbb6a1af3
+Revision ID: 83bfd9e0d3a9
 Revises: eae83cad4059
-Create Date: 2026-09-17 13:25:11.815876
+Create Date: 2026-09-17 13:44:39.118322
 
 """
 from typing import Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
-
+from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision: str = 'cfafbb6a1af3'
+revision: str = '83bfd9e0d3a9'
 down_revision: Union[str, Sequence[str], None] = 'eae83cad4059'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -122,6 +122,23 @@ def upgrade() -> None:
     sa.ForeignKeyConstraint(['behaviour_id'], ['file_behaviours.behaviour_id'], ),
     sa.PrimaryKeyConstraint('signature_match_id')
     )
+    iockind = postgresql.ENUM(
+        'IP',
+        'DOMAIN',
+        'URL',
+        'FILE',
+        name='iockind'
+    )
+
+    sourcetype = postgresql.ENUM(
+        'VIRUSTOTAL',
+        'ABUSEIPDB',
+        'OTX',
+        name='sourcetype'
+    )
+
+    iockind.create(op.get_bind(), checkfirst=True)
+    sourcetype.create(op.get_bind(), checkfirst=True)
     op.add_column('iocs', sa.Column('kind', sa.Enum('IP', 'DOMAIN', 'URL', 'FILE', name='iockind'), nullable=False))
     op.add_column('source_observations', sa.Column('source_type', sa.Enum('VIRUSTOTAL', 'ABUSEIPDB', 'OTX', name='sourcetype'), nullable=False))
     op.alter_column('virus_total_observations', 'times_submitted',
@@ -192,6 +209,23 @@ def downgrade() -> None:
                nullable=False)
     op.drop_column('source_observations', 'source_type')
     op.drop_column('iocs', 'kind')
+    sourcetype = postgresql.ENUM(
+        'VIRUSTOTAL',
+        'ABUSEIPDB',
+        'OTX',
+        name='sourcetype'
+    )
+
+    iockind = postgresql.ENUM(
+        'IP',
+        'DOMAIN',
+        'URL',
+        'FILE',
+        name='iockind'
+    )
+
+    sourcetype.drop(op.get_bind(), checkfirst=True)
+    iockind.drop(op.get_bind(), checkfirst=True)
     op.drop_table('signature_matches')
     op.drop_table('sigma_analyses')
     op.drop_table('service_activities')

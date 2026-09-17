@@ -12,7 +12,6 @@ from app.api.models.otx_pulse import OTXPulse
 from app.api.models.risk_assessment import RiskAssessment
 
 
-from app.api.models.ioc import IOC
 from app.api.models.ioc_ip import IP
 from app.api.models.ioc_domain import Domain
 from app.api.models.ioc_url import URL
