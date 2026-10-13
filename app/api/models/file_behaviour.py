@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from app.api.models.ioc_file import File
-    from app.api.models.mitre_technique import MITRETechnique
+    from app.api.models.mitre_technique import MITREtechnique
     from app.api.models.sigma_analysis import SigmaAnalysis
     from app.api.models.signature_match import SignatureMatch
     from app.api.models.process_activity import ProcessActivity
@@ -36,7 +36,7 @@ class FileBehaviour(Base):
         back_populates="file_behaviours"
     )
 
-    mitre_techniques: Mapped[list["MITRETechnique"]] = relationship(
+    mitre_techniques: Mapped[list["MITREtechnique"]] = relationship(
         back_populates="behaviour"
     )
 

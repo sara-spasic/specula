@@ -23,6 +23,6 @@ class OTXPulse(Base):
     otx_observation_id:Mapped[int]=mapped_column(
         ForeignKey("otx_observations.observation_id")
     )
-    observation: Mapped[["OTXObservation"]]=relationship(
+    observation: Mapped["OTXObservation"]=relationship(
         back_populates="pulses"
     )
