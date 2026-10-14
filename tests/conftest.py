@@ -1,6 +1,8 @@
 
 import os
 
+from requests import Session
+
 import pytest
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import make_url
