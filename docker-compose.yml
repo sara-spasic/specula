@@ -19,5 +19,16 @@ services:
     volumes:
     - postgres_data:/var/lib/postgresql/data
   
+  test_db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: specula_test
+      POSTGRES_PASSWORD: specula_test_password
+      POSTGRES_DB: specula_test
+    ports:
+      - "5433:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+      
 volumes:
   postgres_data:

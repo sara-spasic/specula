@@ -22,3 +22,5 @@ class MITREtechnique(Base):
         behaviour: Mapped["FileBehaviour"]=relationship(
                 back_populates="mitre_techniques"
         )
+
+        

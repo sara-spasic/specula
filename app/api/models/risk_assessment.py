@@ -23,3 +23,5 @@ class RiskAssessment(Base):
     ioc: Mapped["IOC"]=relationship(
         back_populates="risk_assessments"
     )
+
+    
