@@ -1,7 +1,7 @@
 
 import os
 
-from requests import Session
+from sqlalchemy.orm import Session
 
 import pytest
 from sqlalchemy import create_engine, text
