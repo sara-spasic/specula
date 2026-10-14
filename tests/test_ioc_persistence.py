@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-
+from conftest import db_session
 from sqlalchemy import select
 
 from app.api.models.ioc import IOC, IOCType, IOCKind
